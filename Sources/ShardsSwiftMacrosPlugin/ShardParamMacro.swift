@@ -22,8 +22,8 @@ public struct ShardParametersMacro: DeclarationMacro {
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         
-        guard let argumentList = node.argumentList,
-              let firstArgument = argumentList.first,
+        let argumentList = node.argumentList
+        guard let firstArgument = argumentList.first,
               let nameExpr = firstArgument.expression.as(StringLiteralExprSyntax.self),
               let nameSegment = nameExpr.segments.first?.as(StringSegmentSyntax.self) else {
             throw MacroError.invalidArguments
