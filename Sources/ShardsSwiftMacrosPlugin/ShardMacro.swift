@@ -56,10 +56,13 @@ public struct ShardMacro: MemberMacro, ExtensionMacro {
     
     public static func expansion(
         of node: AttributeSyntax,
-        providingConformancesOf declaration: some DeclGroupSyntax,
+        attachedTo declaration: some DeclGroupSyntax,
+        providingExtensionsOf type: some TypeSyntaxProtocol,
+        conformingTo protocols: [TypeSyntax],
         in context: some MacroExpansionContext
-    ) throws -> [(TypeSyntax, GenericWhereClauseSyntax?)] {
-        return [("IShard", nil)]
+    ) throws -> [ExtensionDeclSyntax] {
+        let ishardExtension = try ExtensionDeclSyntax("extension \(type.trimmed): IShard {}")
+        return [ishardExtension]
     }
     
     // MARK: - Helper Methods
