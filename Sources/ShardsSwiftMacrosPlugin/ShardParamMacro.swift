@@ -6,7 +6,7 @@ import SwiftSyntaxMacros
 public struct ShardParamMacro: PeerMacro {
     public static func expansion(
         of node: AttributeSyntax,
-        providingPeersOf declaration: some DeclSyntax,
+        providingPeersOf declaration: DeclSyntax,
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         // This macro is primarily used for metadata by the @Shard macro
