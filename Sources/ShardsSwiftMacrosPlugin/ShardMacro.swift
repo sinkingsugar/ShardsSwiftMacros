@@ -82,8 +82,8 @@ public struct ShardMacro: MemberMacro, ExtensionMacro {
                                 
                                 // Extract help text from @ShardParam
                                 var helpText = ""
-                                if let arguments = attr.arguments?.as(LabeledExprListSyntax.self),
-                                   let helpExpr = arguments.first?.expression.as(StringLiteralExprSyntax.self),
+                                if let argumentList = attr.arguments?.as(LabeledExprListSyntax.self),
+                                   let helpExpr = argumentList.first?.expression.as(StringLiteralExprSyntax.self),
                                    let helpSegment = helpExpr.segments.first?.as(StringSegmentSyntax.self) {
                                     helpText = helpSegment.content.text
                                 }
