@@ -20,7 +20,7 @@
 /// ```
 
 @attached(member, names: named(parameters), named(setParam), named(getParam), named(exposedVariables), named(requiredVariables), named(compose), named(warmup), named(cleanup), named(register), named(ShardType), named(inputTypesCFunc), named(outputTypesCFunc), named(destroyCFunc), named(nameCFunc), named(hashCFunc), named(helpCFunc), named(parametersCFunc), named(setParamCFunc), named(getParamCFunc), named(exposedVariablesCFunc), named(requiredVariablesCFunc), named(composeCFunc), named(warmupCFunc), named(cleanupCFunc), named(activateCFunc), named(errorCache), named(output))
-@attached(extension, conformances: IShard)
+@attached(extension, conformances: IShard, names: named(IShard))
 public macro Shard(name: String, help: String) = #externalMacro(module: "ShardsSwiftMacrosPlugin", type: "ShardMacro")
 
 /// Marks a property as a shard parameter
