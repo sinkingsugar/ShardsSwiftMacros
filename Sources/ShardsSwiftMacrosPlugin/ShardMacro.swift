@@ -12,10 +12,10 @@ public struct ShardMacro: MemberMacro, ExtensionMacro {
     ) throws -> [DeclSyntax] {
         
         // Extract name and help from macro arguments
-        guard let arguments = node.arguments?.as(LabeledExprListSyntax.self),
-              arguments.count >= 2,
-              let nameExpr = arguments.first?.expression.as(StringLiteralExprSyntax.self),
-              let helpExpr = arguments.dropFirst().first?.expression.as(StringLiteralExprSyntax.self) else {
+        guard let argumentList = node.arguments?.as(LabeledExprListSyntax.self),
+              argumentList.count >= 2,
+              let nameExpr = argumentList.first?.expression.as(StringLiteralExprSyntax.self),
+              let helpExpr = argumentList.dropFirst().first?.expression.as(StringLiteralExprSyntax.self) else {
             throw MacroError.invalidArguments
         }
         
