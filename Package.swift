@@ -17,6 +17,8 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-syntax.git", from: "509.0.0"),
+        // Add shards dependency - you'll need to specify the correct path/URL
+        .package(path: "../shards"), // Assuming shards is a sibling directory
     ],
     targets: [
         // Macro implementation that performs the source transformation
@@ -29,10 +31,19 @@ let package = Package(
         ),
 
         // Library that exposes a macro as part of its API, which is used in client programs.
-        .target(name: "ShardsSwiftMacros", dependencies: ["ShardsSwiftMacrosPlugin"]),
+        .target(
+            name: "ShardsSwiftMacros", 
+            dependencies: [
+                "ShardsSwiftMacrosPlugin",
+                "shards" // Add shards dependency
+            ]
+        ),
 
         // A client of the library, which is able to use the macro in its own code.
-        .executableTarget(name: "ShardsSwiftMacrosClient", dependencies: ["ShardsSwiftMacros"]),
+        .executableTarget(
+            name: "ShardsSwiftMacrosClient", 
+            dependencies: ["ShardsSwiftMacros"]
+        ),
 
         // A test target used to develop the macro implementation.
         .testTarget(
