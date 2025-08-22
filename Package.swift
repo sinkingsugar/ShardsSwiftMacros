@@ -22,7 +22,7 @@ let package = Package(
         // Shards target with the source file
         .target(
             name: "shards",
-            path: "/Users/sugar/devel/shards/include/shards",
+            path: "../shards/include/shards",
             sources: ["shards.swift"]
         ),
 
