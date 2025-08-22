@@ -1,7 +1,6 @@
 import ShardsSwiftMacros
 
-// Example usage of the macro - commented out until we have the shards types
-/*
+// Example usage of the macro
 @Shard(name: "Example.Test", help: "A test shard created with macros")
 final class ExampleTestShard {
     @ShardParam(help: "A test parameter")
@@ -17,7 +16,6 @@ final class ExampleTestShard {
         return .success(SHVar(string: result))
     }
 }
-*/
 
 // This would be the main entry point for testing
 @main
@@ -25,7 +23,7 @@ struct ShardsSwiftMacrosClient {
     static func main() {
         print("ShardsSwiftMacros client example")
         print("Macro package built successfully!")
-        // print("Generated shard name: \(ExampleTestShard.name)")
-        // print("Generated shard help: \(ExampleTestShard.help)")
+        print("Generated shard name: \(ExampleTestShard.name)")
+        print("Generated shard help: \(ExampleTestShard.help)")
     }
 }
