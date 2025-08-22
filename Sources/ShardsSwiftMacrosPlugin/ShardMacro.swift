@@ -3,7 +3,7 @@ import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 
 /// The main @Shard macro that generates all the boilerplate for IShard conformance
-public struct ShardMacro: MemberMacro, ConformanceMacro {
+public struct ShardMacro: MemberMacro, ExtensionMacro {
     
     public static func expansion(
         of node: AttributeSyntax,
