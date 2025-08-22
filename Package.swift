@@ -17,10 +17,15 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-syntax.git", from: "509.0.0"),
-        // Add shards dependency - you'll need to specify the correct path/URL
-        .package(path: "../shards"), // Assuming shards is a sibling directory
     ],
     targets: [
+        // Shards target with the source file
+        .target(
+            name: "shards",
+            path: "/Users/sugar/devel/shards/include/shards",
+            sources: ["shards.swift"]
+        ),
+
         // Macro implementation that performs the source transformation
         .macro(
             name: "ShardsSwiftMacrosPlugin",
@@ -35,7 +40,7 @@ let package = Package(
             name: "ShardsSwiftMacros", 
             dependencies: [
                 "ShardsSwiftMacrosPlugin",
-                "shards" // Add shards dependency
+                "shards"
             ]
         ),
 
