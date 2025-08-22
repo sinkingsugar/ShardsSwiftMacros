@@ -22,9 +22,9 @@ public struct ShardParametersMacro: DeclarationMacro {
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         
-        guard let arguments = node.arguments,
-              arguments.count >= 1,
-              let nameExpr = arguments.first?.expression.as(StringLiteralExprSyntax.self),
+        guard let argumentList = node.argumentList,
+              let firstArgument = argumentList.first,
+              let nameExpr = firstArgument.expression.as(StringLiteralExprSyntax.self),
               let nameSegment = nameExpr.segments.first?.as(StringSegmentSyntax.self) else {
             throw MacroError.invalidArguments
         }
