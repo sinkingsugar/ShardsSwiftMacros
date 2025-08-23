@@ -55,7 +55,7 @@ public struct ShardMacro: MemberMacro, ExtensionMacro {
         members.append(generateRegisterMethod())
         
         // Generate all the C bridge boilerplate
-        members.append(contentsOf: generateCBridgeBoilerplate())
+        members.append(contentsOf: generateCBridgeBoilerplate(className: className))
         
         return members
     }
