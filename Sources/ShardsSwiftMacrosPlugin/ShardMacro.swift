@@ -249,9 +249,9 @@ public struct ShardMacro: MemberMacro, ExtensionMacro {
         """
     }
     
-    private static func generateCBridgeBoilerplate() -> [DeclSyntax] {
+    private static func generateCBridgeBoilerplate(className: String) -> [DeclSyntax] {
         return [
-            "typealias ShardType = Self",
+            "typealias ShardType = \(raw: className)",
             "static var inputTypesCFunc: SHInputTypesProc { { bridgeInputTypes(ShardType.self, shard: $0) } }",
             "static var outputTypesCFunc: SHInputTypesProc { { bridgeOutputTypes(ShardType.self, shard: $0) } }",
             "static var destroyCFunc: SHDestroyProc { { bridgeDestroy(ShardType.self, shard: $0) } }",
