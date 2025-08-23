@@ -241,10 +241,10 @@ public struct ShardMacro: MemberMacro, ExtensionMacro {
         """
     }
     
-    private static func generateRegisterMethod() -> DeclSyntax {
+    private static func generateRegisterMethod(className: String) -> DeclSyntax {
         return """
         static func register() {
-            RegisterShard(Self.name.utf8Start.withMemoryRebound(to: Int8.self, capacity: 1) { $0 }, { createSwiftShard(Self.self) })
+            RegisterShard(\(raw: className).name.utf8Start.withMemoryRebound(to: Int8.self, capacity: 1) { $0 }, { createSwiftShard(\(raw: className).self) })
         }
         """
     }
