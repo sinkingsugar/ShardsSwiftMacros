@@ -11,6 +11,12 @@ public struct ShardMacro: MemberMacro, ExtensionMacro {
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         
+        // Get the class name
+        guard let classDecl = declaration.as(ClassDeclSyntax.self) else {
+            throw MacroError.unsupportedDeclaration
+        }
+        let className = classDecl.name.text
+        
         // Extract name and help from macro arguments
         guard let argumentList = node.arguments?.as(LabeledExprListSyntax.self),
               argumentList.count >= 2,
@@ -22,8 +28,8 @@ public struct ShardMacro: MemberMacro, ExtensionMacro {
         let shardName = nameExpr.segments.first?.as(StringSegmentSyntax.self)?.content.text ?? ""
         let shardHelp = helpExpr.segments.first?.as(StringSegmentSyntax.self)?.content.text ?? ""
         
-        // Find all @ShardParam properties
-        let shardParams = extractShardParams(from: declaration)
+        // // Find all @ShardParam properties
+        // let shardParams = extractShardParams(from: declaration)
         
         var members: [DeclSyntax] = []
         
@@ -31,19 +37,19 @@ public struct ShardMacro: MemberMacro, ExtensionMacro {
         members.append(generateStaticName(shardName))
         members.append(generateStaticHelp(shardHelp))
         
-        // Generate parameters property
-        members.append(generateParametersProperty(shardParams))
+        // // Generate parameters property
+        // members.append(generateParametersProperty(shardParams))
         
-        // Generate setParam/getParam methods
-        members.append(generateSetParamMethod(shardParams))
-        members.append(generateGetParamMethod(shardParams))
+        // // Generate setParam/getParam methods
+        // members.append(generateSetParamMethod(shardParams))
+        // members.append(generateGetParamMethod(shardParams))
         
-        // Generate lifecycle methods
-        members.append(generateExposedVariables())
-        members.append(generateRequiredVariables())
-        members.append(generateComposeMethod(shardParams))
-        members.append(generateWarmupMethod(shardParams))
-        members.append(generateCleanupMethod(shardParams))
+        // // Generate lifecycle methods
+        // members.append(generateExposedVariables())
+        // members.append(generateRequiredVariables())
+        // members.append(generateComposeMethod(shardParams))
+        // members.append(generateWarmupMethod(shardParams))
+        // members.append(generateCleanupMethod(shardParams))
         
         // Generate registration method
         members.append(generateRegisterMethod())
