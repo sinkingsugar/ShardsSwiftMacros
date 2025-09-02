@@ -36,6 +36,9 @@ public struct ShardMacro: MemberMacro, ExtensionMacro {
         // Generate static properties
         members.append(generateStaticName(shardName))
         members.append(generateStaticHelp(shardHelp))
+
+        members.append(generateExposedVariables())
+        members.append(generateRequiredVariables())
         
         // // Generate parameters property
         // members.append(generateParametersProperty(shardParams))
