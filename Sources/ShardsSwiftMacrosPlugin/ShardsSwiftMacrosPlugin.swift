@@ -9,6 +9,7 @@ struct ShardsSwiftMacrosPlugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
         ShardMacro.self,
         FilterShardMacro.self,
+        SimpleShardMacro.self,
         ShardParamMacro.self,
         ShardParametersMacro.self,
     ]
